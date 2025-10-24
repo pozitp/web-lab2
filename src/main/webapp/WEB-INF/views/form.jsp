@@ -12,8 +12,8 @@
 <body>
 <main class="screen">
     <div class="banner">+--------------------------------------------------------------+
-|  WEB LAB 2 | VARIANT 6422                                    |
-|    STUDENT | MUKHAMEDYAROV ARTUR ALBERTOVICH | GROUP P3209   |
+| WEB LAB 2 | VARIANT 6422                                     |
+| STUDENT   | MUKHAMEDYAROV ARTUR ALBERTOVICH | GROUP P3209    |
 +--------------------------------------------------------------+</div>
     <div class="box">
         <div class="box-title">input console</div>

@@ -11,7 +11,7 @@
 <body>
 <main class="screen">
     <div class="banner">+-------------------------------+
-|   WEB LAB 2 RESULT CONSOLE    |
+| WEB LAB 2 RESULT CONSOLE      |
 +-------------------------------+</div>
     <div class="box">
         <div class="box-title">latest calculation</div>
