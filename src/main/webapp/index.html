@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en_US">
+<head>
+    <meta charset="UTF-8">
+    <title>Web Lab 2 - Redirecting...</title>
+    <meta content="width=device-width, initial-scale=1" name="viewport">
+    <style>
+        body {
+            background: #000000;
+            color: #00ff66;
+            font-family: monospace;
+            text-align: center;
+            padding: 50px;
+        }
+    </style>
+</head>
+<body>
+<h1>Redirecting to Web Lab 2...</h1>
+<p>If you are not redirected automatically, <a href="controller">click here</a>.</p>
+<script>
+    const form = document.createElement('form');
+    form.method = 'POST';
+    form.action = 'controller';
+    document.body.appendChild(form);
+    form.submit();
+</script>
+</body>
+</html>

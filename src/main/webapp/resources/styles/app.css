@@ -1,0 +1,228 @@
+@font-face {
+    font-family: ibmvga8;
+    src: url(/web-lab2/resources/styles/ibm_vga8.eot);
+    src: url(/web-lab2/resources/styles/ibm_vga8.eot?#iefix) format('embedded-opentype'), url(/web-lab2/resources/styles/ibm_vga8.woff2) format('woff2'), url(/web-lab2/resources/styles/ibm_vga8.woff) format('woff'), url(/web-lab2/resources/styles/ibm_vga8.ttf) format('truetype');
+    font-weight: 400;
+    font-style: normal
+}
+
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    padding: 16px;
+    min-height: 100vh;
+    background: #000000;
+    color: #00ff66;
+    font-family: ibmvga8, monospace;
+    font-size: 16px;
+    line-height: 16px;
+}
+
+a {
+    color: #00ffff;
+}
+
+a:hover {
+    color: #ffff66;
+}
+
+.screen {
+    max-width: 960px;
+    margin: 0 auto;
+}
+
+.banner {
+    border: 1px solid #00ff66;
+    padding: 12px 16px;
+    background: #001100;
+    margin: 0 0 16px;
+    white-space: pre;
+}
+
+.box {
+    border: 1px solid #00ff66;
+    background: #000000;
+    padding: 12px 16px;
+    margin-bottom: 16px;
+}
+
+.box-title {
+    display: inline-block;
+    padding: 0 4px;
+    margin-bottom: 8px;
+    background: #001100;
+    border: 1px solid #00ff66;
+    text-transform: uppercase;
+}
+
+.grid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 16px;
+}
+
+.grid-item {
+    flex: 1 1 320px;
+    min-width: 280px;
+}
+
+fieldset {
+    border: 1px dashed #00ff66;
+    padding: 10px 12px;
+    margin: 0 0 12px;
+}
+
+legend {
+    padding: 0 4px;
+    text-transform: uppercase;
+}
+
+.choices {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+    margin-top: 8px;
+}
+
+.choice {
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    padding: 3px 8px;
+    border: 1px solid #00ff66;
+    background: #001100;
+    cursor: pointer;
+}
+
+.choice:hover {
+    border-color: #00ffff;
+    color: #00ffff;
+}
+
+.field-input {
+    width: 100%;
+    padding: 6px;
+    border: 1px solid #00ff66;
+    background: #000000;
+    color: #00ff66;
+    font-family: inherit;
+}
+
+.field-input:focus {
+    outline: 1px solid #00ffff;
+}
+
+.button {
+    display: inline-block;
+    padding: 6px 16px;
+    border: 1px solid #00ff66;
+    background: #001100;
+    color: #00ff66;
+    font-family: inherit;
+    cursor: pointer;
+}
+
+.button:hover {
+    border-color: #00ffff;
+    color: #00ffff;
+}
+
+.selection {
+    margin-top: 6px;
+}
+
+.alert {
+    border: 1px solid #ff5555;
+    background: #220000;
+    color: #ffaaaa;
+    padding: 10px;
+    margin-top: 12px;
+}
+
+.alert h3 {
+    margin: 0 0 6px;
+}
+
+.plot {
+    border: 1px solid #00ff66;
+    background: #000000;
+    padding: 8px;
+}
+
+.plot svg {
+    width: 100%;
+    height: 100%;
+}
+
+.plot__note {
+    margin-top: 6px;
+    color: #00cc55;
+}
+
+.area-shape {
+    fill: rgba(0, 255, 102, 0.2);
+    stroke: #00ff66;
+    stroke-width: 1;
+}
+
+.axis {
+    stroke: #00ffff;
+    stroke-width: 1;
+}
+
+.axis-label {
+    fill: #00ffff;
+    font-size: 10px;
+}
+
+#selected-point {
+    fill: none;
+    stroke: #00ffff;
+    stroke-width: 1.2;
+}
+
+.history-point--hit {
+    fill: #00ff66;
+}
+
+.history-point--miss {
+    fill: #ff5555;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 8px;
+}
+
+th,
+td {
+    border: 1px solid #00ff66;
+    padding: 4px 6px;
+    text-align: center;
+}
+
+thead {
+    background: #001100;
+}
+
+.note {
+    color: #00cc55;
+    margin-top: 6px;
+}
+
+.link-back {
+    display: inline-block;
+    margin-top: 12px;
+}
+
+@media (max-width: 640px) {
+    body {
+        padding: 12px;
+    }
+}
