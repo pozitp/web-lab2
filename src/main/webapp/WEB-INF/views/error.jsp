@@ -10,11 +10,9 @@
 </head>
 <body>
 <main class="screen">
-    <div class="banner">
-        +----------------+
-        | ERROR CONSOLE |
-        +----------------+
-    </div>
+    <div class="banner">+----------------+
+| ERROR CONSOLE  |
++----------------+</div>
     <div class="box">
         <div class="box-title">details</div>
         <p>Status code: <c:out value="${requestScope['jakarta.servlet.error.status_code']}"/></p>

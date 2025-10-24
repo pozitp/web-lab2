@@ -10,11 +10,9 @@
 </head>
 <body>
 <main class="screen">
-    <div class="banner">
-        +-------------------------------+
-        | WEB LAB 2 RESULT CONSOLE |
-        +-------------------------------+
-    </div>
+    <div class="banner">+-------------------------------+
+|   WEB LAB 2 RESULT CONSOLE    |
++-------------------------------+</div>
     <div class="box">
         <div class="box-title">latest calculation</div>
         <c:choose>
@@ -32,13 +30,13 @@
                     </thead>
                     <tbody>
                     <tr>
-                        <td><c:out value="${result.x}"/></td>
-                        <td><c:out value="${result.y}"/></td>
-                        <td><c:out value="${result.r}"/></td>
-                        <td><c:out value="${result.hit ? 'Yes' : 'No'}"/></td>
+                        <td><c:out value="${result.getXFormatted()}"/></td>
+                        <td><c:out value="${result.getYFormatted()}"/></td>
+                        <td><c:out value="${result.getRFormatted()}"/></td>
+                        <td><c:out value="${result.isHit() ? 'Yes' : 'No'}"/></td>
                         <td class="timestamp" data-timestamp="<c:out value='${result.processedAt}'/>"><c:out
                                 value="${result.processedAt}"/></td>
-                        <td><c:out value="${result.processingTimeMs}"/></td>
+                        <td><c:out value="${result.getProcessingTimeFormatted()}"/></td>
                     </tr>
                     </tbody>
                 </table>
@@ -70,13 +68,13 @@
             <tbody>
             <c:forEach var="item" items="${results}" varStatus="status">
                 <tr>
-                    <td><c:out value="${item.x}"/></td>
-                    <td><c:out value="${item.y}"/></td>
-                    <td><c:out value="${item.r}"/></td>
-                    <td><c:out value="${item.hit ? 'Yes' : 'No'}"/></td>
+                    <td><c:out value="${item.getXFormatted()}"/></td>
+                    <td><c:out value="${item.getYFormatted()}"/></td>
+                    <td><c:out value="${item.getRFormatted()}"/></td>
+                    <td><c:out value="${item.isHit() ? 'Yes' : 'No'}"/></td>
                     <td class="timestamp" data-timestamp="<c:out value='${item.processedAt}'/>"><c:out
                             value="${item.processedAt}"/></td>
-                    <td><c:out value="${item.processingTimeMs}"/></td>
+                    <td><c:out value="${item.getProcessingTimeFormatted()}"/></td>
                 </tr>
             </c:forEach>
             </tbody>

@@ -1,7 +1,7 @@
 @font-face {
     font-family: ibmvga8;
-    src: url(/web-lab2/resources/styles/ibm_vga8.eot);
-    src: url(/web-lab2/resources/styles/ibm_vga8.eot?#iefix) format('embedded-opentype'), url(/web-lab2/resources/styles/ibm_vga8.woff2) format('woff2'), url(/web-lab2/resources/styles/ibm_vga8.woff) format('woff'), url(/web-lab2/resources/styles/ibm_vga8.ttf) format('truetype');
+    src: url(ibm_vga8.eot);
+    src: url(ibm_vga8.eot?#iefix) format('embedded-opentype'), url(ibm_vga8.woff2) format('woff2'), url(ibm_vga8.woff) format('woff'), url(ibm_vga8.ttf) format('truetype');
     font-weight: 400;
     font-style: normal
 }

@@ -202,8 +202,7 @@
             if (timestamp) {
                 try {
                     const date = new Date(timestamp);
-                    const formatted = date.toLocaleString();
-                    element.textContent = formatted;
+                    element.textContent = date.toLocaleString();
                 } catch (e) {
                 }
             }

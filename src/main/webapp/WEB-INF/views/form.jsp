@@ -11,12 +11,10 @@
 </head>
 <body>
 <main class="screen">
-    <div class="banner">
-        +--------------------------------------------------------------+
-        | WEB LAB 2 | VARIANT 6422 |
-        | STUDENT | MUKHAMEDYAROV ARTUR ALBERTOVICH | GROUP P3209 |
-        +--------------------------------------------------------------+
-    </div>
+    <div class="banner">+--------------------------------------------------------------+
+|  WEB LAB 2 | VARIANT 6422                                    |
+|    STUDENT | MUKHAMEDYAROV ARTUR ALBERTOVICH | GROUP P3209   |
++--------------------------------------------------------------+</div>
     <div class="box">
         <div class="box-title">input console</div>
         <div class="grid">
@@ -37,7 +35,7 @@
 
                     <fieldset>
                         <legend>Y coordinate</legend>
-                        <input
+                        <label for="y-input"></label><input
                                 class="field-input"
                                 type="text"
                                 id="y-input"
@@ -62,7 +60,7 @@
                     </fieldset>
 
                     <div class="submit-row">
-                        <button type="submit" class="button">submit request</button>
+                        <button type="submit" class="button">Submit request</button>
                         <p class="selection" id="selection-readout">Selected: none</p>
                     </div>
 
@@ -129,13 +127,13 @@
             <tbody id="history-body">
             <c:forEach var="item" items="${results}" varStatus="status">
                 <tr>
-                    <td><c:out value="${item.x}"/></td>
-                    <td><c:out value="${item.y}"/></td>
-                    <td><c:out value="${item.r}"/></td>
-                    <td><c:out value="${item.hit ? 'Yes' : 'No'}"/></td>
+                    <td><c:out value="${item.getXFormatted()}"/></td>
+                    <td><c:out value="${item.getYFormatted()}"/></td>
+                    <td><c:out value="${item.getRFormatted()}"/></td>
+                    <td><c:out value="${item.isHit() ? 'Yes' : 'No'}"/></td>
                     <td class="timestamp" data-timestamp="<c:out value='${item.processedAt}'/>"><c:out
                             value="${item.processedAt}"/></td>
-                    <td><c:out value="${item.processingTimeMs}"/></td>
+                    <td><c:out value="${item.getProcessingTimeFormatted()}"/></td>
                 </tr>
             </c:forEach>
             </tbody>
