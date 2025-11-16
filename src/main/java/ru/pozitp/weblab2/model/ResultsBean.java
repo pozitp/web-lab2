@@ -1,20 +1,22 @@
 package ru.pozitp.weblab2.model;
 
+import jakarta.ejb.Singleton;
+import jakarta.ejb.Startup;
+
 import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
 
-public final class ResultsBean implements java.io.Serializable {
+@Singleton
+@Startup
+public class ResultsBean {
     private static final int MAX_SIZE = 200;
-    private final LinkedList<PointResult> results = new LinkedList<>();
-
-    public ResultsBean() {
-    }
+    private final List<PointResult> results = new LinkedList<>();
 
     public synchronized void addResult(PointResult result) {
-        results.addFirst(result);
+        results.add(0, result);
         if (results.size() > MAX_SIZE) {
-            results.removeLast();
+            results.remove(results.size() - 1);
         }
     }
 
@@ -24,6 +26,6 @@ public final class ResultsBean implements java.io.Serializable {
 
     @Override
     public String toString() {
-        return "ResultsBean{" + "results_count=" + results.size() + '}';
+        return "ResultsBean{results_count=" + results.size() + '}';
     }
 }

@@ -4,14 +4,10 @@ import ru.pozitp.weblab2.util.NumberFormatter;
 
 import java.math.BigDecimal;
 import java.time.OffsetDateTime;
-import java.time.format.DateTimeFormatter;
-import java.util.Locale;
 import java.util.Objects;
 
 public record PointResult(BigDecimal x, BigDecimal y, BigDecimal r, boolean hit, OffsetDateTime processedAt,
-                          BigDecimal processingTimeMs) {
-    private static final DateTimeFormatter DISPLAY_FORMATTER = DateTimeFormatter.ofPattern("dd.MM.yyyy HH:mm:ss", Locale.ROOT);
-
+                          BigDecimal processingTimeMs) implements java.io.Serializable {
     public PointResult(BigDecimal x, BigDecimal y, BigDecimal r, boolean hit, OffsetDateTime processedAt, BigDecimal processingTimeMs) {
         this.x = Objects.requireNonNull(x, "x");
         this.y = Objects.requireNonNull(y, "y");

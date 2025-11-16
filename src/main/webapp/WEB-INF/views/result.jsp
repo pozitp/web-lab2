@@ -1,7 +1,7 @@
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <%@ taglib prefix="c" uri="jakarta.tags.core" %>
 <!DOCTYPE html>
-<html lang="en_US">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <title>Point check result</title>
@@ -47,6 +47,7 @@
         </c:choose>
         <p class="note">Data lives in application scope.</p>
         <form method="post" action="${pageContext.request.contextPath}/controller" style="display: inline;">
+            <input type="hidden" name="action" value="form"/>
             <button type="submit" class="button">Back to form</button>
         </form>
     </div>

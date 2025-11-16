@@ -2,7 +2,7 @@
 <%@ taglib prefix="c" uri="jakarta.tags.core" %>
 <%@ taglib prefix="fn" uri="jakarta.tags.functions" %>
 <!DOCTYPE html>
-<html lang="en_US">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <title>Web Lab #2 - Point Hit Checker</title>
@@ -19,7 +19,7 @@
         <div class="box-title">input console</div>
         <div class="grid">
             <div class="grid-item">
-                <form id="hit-form" method="post" action="${pageContext.request.contextPath}/area-check" novalidate>
+                <form id="hit-form" method="post" action="${pageContext.request.contextPath}/controller" novalidate>
                     <fieldset>
                         <legend>X coordinate</legend>
                         <div class="choices">
@@ -35,7 +35,8 @@
 
                     <fieldset>
                         <legend>Y coordinate</legend>
-                        <label for="y-input"></label><input
+                        <label for="y-input">Y coordinate</label>
+                        <input
                                 class="field-input"
                                 type="text"
                                 id="y-input"
@@ -86,7 +87,7 @@
                 <fieldset>
                     <legend>Area preview</legend>
                     <div class="plot" id="interactive-plot">
-                        <svg viewBox="-140 -140 280 280" data-plot role="img" aria-label="Target area">
+                        <svg viewBox="-140 -140 280 280" data-plot aria-label="Target area">
                             <g class="axis">
                                 <line x1="-130" y1="0" x2="130" y2="0"></line>
                                 <line x1="0" y1="130" x2="0" y2="-130"></line>

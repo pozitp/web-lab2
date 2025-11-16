@@ -1,13 +1,12 @@
 package ru.pozitp.weblab2.controller;
 
-import jakarta.servlet.ServletContext;
+import jakarta.ejb.EJB;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
-import ru.pozitp.weblab2.listener.ApplicationStartupListener;
 import ru.pozitp.weblab2.model.PointRequest;
 import ru.pozitp.weblab2.model.PointResult;
 import ru.pozitp.weblab2.model.ResultsBean;
@@ -23,11 +22,14 @@ import java.time.OffsetDateTime;
 public class AreaCheckServlet extends HttpServlet {
     private static final String SESSION_ERRORS = "flashErrors";
     private static final String SESSION_FORM_VALUES = "formValues";
+    private static final String SESSION_LATEST_RESULT = "latestResult";
 
     private static final MathContext TIME_CONTEXT = new MathContext(10);
 
     private transient InputValidator validator;
     private transient GeometryCalculator calculator;
+
+    @EJB
     private transient ResultsBean resultsBean;
 
     private static BigDecimal toMillis(long nanos) {
@@ -40,14 +42,6 @@ public class AreaCheckServlet extends HttpServlet {
         super.init();
         this.validator = new InputValidator();
         this.calculator = new GeometryCalculator();
-        ServletContext context = getServletContext();
-        Object attribute = context.getAttribute(ApplicationStartupListener.RESULTS_BEAN_KEY);
-        if (attribute instanceof ResultsBean bean) {
-            this.resultsBean = bean;
-        } else {
-            this.resultsBean = new ResultsBean();
-            context.setAttribute(ApplicationStartupListener.RESULTS_BEAN_KEY, this.resultsBean);
-        }
     }
 
     @Override
@@ -57,6 +51,13 @@ public class AreaCheckServlet extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws IOException {
+        Object via = req.getAttribute("viaController");
+        boolean isValidAccess = via instanceof Boolean booleanValue && booleanValue;
+        if (!isValidAccess) {
+            resp.sendError(HttpServletResponse.SC_METHOD_NOT_ALLOWED, "Direct access to area-check is not allowed. Use the front controller.");
+            return;
+        }
+
         HttpSession session = req.getSession(true);
         long started = System.nanoTime();
 
@@ -77,8 +78,8 @@ public class AreaCheckServlet extends HttpServlet {
 
         resultsBean.addResult(result);
 
-        session.setAttribute("latestResult", result);
+        session.setAttribute(SESSION_LATEST_RESULT, result);
 
-        resp.sendRedirect(req.getContextPath() + "/result");
+        resp.sendRedirect(req.getContextPath() + "/controller?action=result");
     }
 }

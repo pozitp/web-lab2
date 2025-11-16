@@ -28,7 +28,7 @@
 
     if (yInput) {
         yInput.addEventListener("input", () => {
-            const sanitized = yInput.value.replace(/[^0-9+\-.,]/g, "").replace(",", ".");
+            const sanitized = yInput.value.replaceAll(/[^0-9+\-.,]/g, "").replaceAll(",", ".");
             if (sanitized !== yInput.value) {
                 yInput.value = sanitized;
             }
@@ -36,13 +36,13 @@
         });
     }
 
-    document.querySelectorAll('input[name="x"]').forEach((input) => {
+    for (const input of document.querySelectorAll('input[name="x"]')) {
         input.addEventListener("change", updateSelectionFromForm);
-    });
+    }
 
-    document.querySelectorAll('input[name="r"]').forEach((input) => {
+    for (const input of document.querySelectorAll('input[name="r"]')) {
         input.addEventListener("change", updateSelectionFromForm);
-    });
+    }
 
     if (plot && form) {
         plot.addEventListener("click", (event) => {
@@ -76,23 +76,23 @@
         const messages = [];
         const xValue = getSelectedValue("x");
         const rValue = getSelectedValue("r");
-        const yRaw = yInput ? yInput.value.trim().replace(",", ".") : "";
+        const yRaw = yInput ? yInput.value.trim().replaceAll(",", ".") : "";
 
         if (!xValue || !allowedX.has(xValue)) {
             messages.push("Pick a value for X.");
         }
 
-        if (yRaw === null || yRaw === "") {
+        if (yRaw === "") {
             messages.push("Enter a numeric value for Y.");
-        } else if (!/^[-+]?\d+(\.\d+)?$/.test(yRaw)) {
-            messages.push("Y must be a valid number.");
-        } else {
+        } else if (/^[-+]?\d+(\.\d+)?$/.test(yRaw)) {
             const yValue = Number.parseFloat(yRaw);
             if (!Number.isFinite(yValue)) {
                 messages.push("Y must be a valid number.");
             } else if (yValue < Y_MIN || yValue > Y_MAX) {
                 messages.push(`Y must be within the range [${Y_MIN}, ${Y_MAX}].`);
             }
+        } else {
+            messages.push("Y must be a valid number.");
         }
 
         if (!rValue || !allowedR.has(rValue)) {
@@ -105,8 +105,8 @@
     function updateSelectionFromForm() {
         const xValue = getSelectedValue("x");
         const rValue = getSelectedValue("r");
-        const yRaw = yInput ? yInput.value.trim().replace(",", ".") : "";
-        const yValue = yRaw === "" ? NaN : Number.parseFloat(yRaw);
+        const yRaw = yInput ? yInput.value.trim().replaceAll(",", ".") : "";
+        const yValue = yRaw === "" ? Number.NaN : Number.parseFloat(yRaw);
 
         if (!selectionCircle || !selectionText || !xValue || !rValue || !Number.isFinite(yValue)) {
             clearSelection();
@@ -134,11 +134,11 @@
             return;
         }
         errorsList.replaceChildren();
-        items.forEach((message) => {
+        for (const message of items) {
             const li = document.createElement("li");
             li.textContent = message;
             errorsList.appendChild(li);
-        });
+        }
         errorsBox.hidden = false;
         errorsBox.focus();
     }
@@ -197,15 +197,14 @@
     }
 
     function formatTimestamps() {
-        document.querySelectorAll('.timestamp').forEach(element => {
-            const timestamp = element.getAttribute('data-timestamp');
+        for (const element of document.querySelectorAll('.timestamp')) {
+            const timestamp = element.dataset.timestamp;
             if (timestamp) {
-                try {
-                    const date = new Date(timestamp);
+                const date = new Date(timestamp);
+                if (!Number.isNaN(date.getTime())) {
                     element.textContent = date.toLocaleString();
-                } catch (e) {
                 }
             }
-        });
+        }
     }
 })();
