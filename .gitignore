@@ -374,3 +374,6 @@ gradle-app.setting
 # End of https://www.toptal.com/developers/gitignore/api/intellij,intellij+iml,intellij+all,java,windows,gradle,visualstudiocode,git
 
 wildfly-38.0.0.Final
+/node_modules/
+/package.json
+/pnpm-lock.yaml
