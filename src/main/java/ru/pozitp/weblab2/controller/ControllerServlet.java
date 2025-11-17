@@ -123,6 +123,7 @@ public class ControllerServlet extends HttpServlet {
             }
         }
         req.setAttribute("result", latest);
-        req.getRequestDispatcher("/WEB-INF/views/result.jsp").forward(req, resp);
+        req.setAttribute("viaController", Boolean.TRUE);
+        req.getRequestDispatcher("/result").forward(req, resp);
     }
 }

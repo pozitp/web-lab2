@@ -1,9 +1,12 @@
 package ru.pozitp.weblab2.model;
 
+import jakarta.ejb.Lock;
+import jakarta.ejb.LockType;
 import jakarta.ejb.Singleton;
 import jakarta.ejb.Startup;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -11,16 +14,17 @@ import java.util.List;
 @Startup
 public class ResultsBean {
     private static final int MAX_SIZE = 200;
-    private final List<PointResult> results = new LinkedList<>();
+    private final List<PointResult> results = Collections.synchronizedList(new LinkedList<>())  ;
 
-    public synchronized void addResult(PointResult result) {
+    @Lock(LockType.WRITE)
+    public void addResult(PointResult result) {
         results.add(0, result);
         if (results.size() > MAX_SIZE) {
             results.remove(results.size() - 1);
         }
     }
-
-    public synchronized List<PointResult> getResultsSnapshot() {
+    @Lock(LockType.READ)
+    public List<PointResult> getResultsSnapshot() {
         return new ArrayList<>(results);
     }
 

@@ -46,7 +46,7 @@ public class AreaCheckServlet extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws IOException {
-        resp.sendError(HttpServletResponse.SC_METHOD_NOT_ALLOWED, "GET is not allowed for area verification.");
+        resp.sendError(HttpServletResponse.SC_METHOD_NOT_ALLOWED, "GET is not allowed for area-check.");
     }
 
     @Override

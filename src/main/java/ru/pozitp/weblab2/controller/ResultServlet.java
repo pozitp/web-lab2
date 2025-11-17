@@ -22,6 +22,13 @@ public class ResultServlet extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        Object via = req.getAttribute("viaController");
+        boolean allowed = via instanceof Boolean b && b;
+        if (!allowed) {
+            resp.sendError(HttpServletResponse.SC_METHOD_NOT_ALLOWED, "Direct access to result is not allowed. Use the front controller.");
+            return;
+        }
+
         HttpSession session = req.getSession(false);
         PointResult latestResult = null;
 
@@ -29,7 +36,6 @@ public class ResultServlet extends HttpServlet {
             Object storedResult = session.getAttribute(SESSION_LATEST_RESULT);
             if (storedResult instanceof PointResult latest) {
                 latestResult = latest;
-                session.removeAttribute(SESSION_LATEST_RESULT);
             }
         }
 
