@@ -1,3 +1,16 @@
+## 1.0.1 (2025-11-17)
+
+
+### Code Refactoring
+
+* Lock impl and result scope ([7a41b5d](https://github.com/pozitp/web-lab2/commit/7a41b5d9d48264a45e510a3698d42e175ccfe953))
+
+### Documentation
+
+* update CHANGELOG.md ([a5f4382](https://github.com/pozitp/web-lab2/commit/a5f4382a93d3578ddfd3d0c855afe51af4c2979f))
+
+
+
 # 1.0.0 (2025-11-17)
 
 
