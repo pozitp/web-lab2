@@ -2,7 +2,7 @@ replicaCount: 1
 
 image:
   repository: ghcr.io/pozitp/web-lab2
-  tag: 7f1c4aaeb1bac9e55b9a6336ee9636e08ce14b6d
+  tag: 00a835953b4ae51c56ee81ca18ee2bf79f9d86f2
   pullPolicy: IfNotPresent
   pullSecrets: [ ]
 
