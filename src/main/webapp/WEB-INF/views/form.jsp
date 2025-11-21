@@ -106,6 +106,7 @@
                         </svg>
                     </div>
                     <p class="plot__note">Click sets coordinates when R is chosen. Submit via the button.</p>
+                    <p class="plot__note" id="cursor-readout">Cursor: middle click to read position.</p>
                 </fieldset>
             </div>
         </div>

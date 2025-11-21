@@ -6,6 +6,7 @@
     const plot = document.querySelector("[data-plot]");
     const selectionCircle = document.getElementById("selected-point");
     const selectionText = document.getElementById("selection-readout");
+    const cursorReadout = document.getElementById("cursor-readout");
 
     const allowedX = new Set(["-4", "-3", "-2", "-1", "0", "1", "2", "3", "4"]);
     const allowedR = new Set(["1", "2", "3", "4", "5"]);
@@ -69,6 +70,32 @@
 
             hideErrors();
             updateSelectionFromForm();
+        });
+    }
+
+    if (plot && cursorReadout) {
+        plot.addEventListener("auxclick", (event) => {
+            if (event.button !== 1) {
+                return;
+            }
+            event.preventDefault();
+            event.stopPropagation();
+
+            const pointer = toPlotCoordinates(plot, event);
+            if (!pointer) {
+                return;
+            }
+
+            const radiusValue = getSelectedValue("r");
+            if (!radiusValue) {
+                cursorReadout.textContent = "Cursor: set R to read coordinates.";
+                return;
+            }
+
+            const radius = Number.parseFloat(radiusValue);
+            const cursorX = (pointer.x / BOARD_RADIUS) * radius;
+            const cursorY = (-pointer.y / BOARD_RADIUS) * radius;
+            cursorReadout.textContent = `Cursor: X = ${formatNumber(cursorX)}, Y = ${formatNumber(cursorY)}`;
         });
     }
 

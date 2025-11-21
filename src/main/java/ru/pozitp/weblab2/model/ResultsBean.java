@@ -13,8 +13,9 @@ import java.util.List;
 @Singleton
 @Startup
 public class ResultsBean {
+
     private static final int MAX_SIZE = 200;
-    private final List<PointResult> results = Collections.synchronizedList(new LinkedList<>())  ;
+    private final List<PointResult> results = Collections.synchronizedList(new LinkedList<>());
 
     @Lock(LockType.WRITE)
     public void addResult(PointResult result) {
@@ -23,6 +24,7 @@ public class ResultsBean {
             results.remove(results.size() - 1);
         }
     }
+
     @Lock(LockType.READ)
     public List<PointResult> getResultsSnapshot() {
         return new ArrayList<>(results);

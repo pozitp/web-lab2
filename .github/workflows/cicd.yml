@@ -1,0 +1,50 @@
+name: ci-cd
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  build-and-publish:
+    if: github.actor != 'github-actions[bot]'
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+      - name: Set up Java
+        uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: 17
+      - name: Build war
+        run: ./gradlew war
+      - name: Log in to GHCR
+        uses: docker/login-action@v3
+        with:
+          registry: ghcr.io
+          username: ${{ github.repository_owner }}
+          password: ${{ secrets.GITHUB_TOKEN }}
+      - name: Build and push image
+        run: |
+          IMAGE=ghcr.io/${{ github.repository_owner }}/web-lab2
+          TAG=${{ github.sha }}
+          docker build -t $IMAGE:$TAG -t $IMAGE:latest .
+          docker push $IMAGE:$TAG
+          docker push $IMAGE:latest
+      - name: Bump chart image tag
+        run: |
+          IMAGE=ghcr.io/${{ github.repository_owner }}/web-lab2
+          TAG=${{ github.sha }}
+          sed -i "s|repository: .*|repository: $IMAGE|" deploy/helm/web-lab2/values.yaml
+          sed -i "s|tag: .*|tag: $TAG|" deploy/helm/web-lab2/values.yaml
+      - name: Commit and push
+        run: |
+          if git diff --quiet; then
+            exit 0
+          fi
+          git config user.name "github-actions"
+          git config user.email "github-actions@github.com"
+          git add deploy/helm/web-lab2/values.yaml
+          git commit -m "CI: publish image [skip ci]"
+          git push

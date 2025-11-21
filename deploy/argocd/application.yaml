@@ -1,0 +1,24 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: web-lab2
+  namespace: argocd
+spec:
+  project: default
+  source:
+    repoURL: https://github.com/pozitp/web-lab2.git
+    targetRevision: main
+    path: deploy/helm/web-lab2
+    helm:
+      releaseName: web-lab2
+      valueFiles:
+        - values.yaml
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: web-lab2
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
+    syncOptions:
+      - CreateNamespace=true

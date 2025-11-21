@@ -1,0 +1,29 @@
+{{- if .Values.ingress.enabled }}
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: {{ .Release.Name }}-ingress
+  labels:
+    app: {{ .Release.Name }}-web
+spec:
+  {{- if .Values.ingress.className }}
+  ingressClassName: {{ .Values.ingress.className }}
+  {{- end }}
+  rules:
+    - host: {{ .Values.ingress.host }}
+      http:
+        paths:
+          - path: {{ .Values.ingress.path }}
+            pathType: Prefix
+            backend:
+              service:
+                name: {{ .Release.Name }}-svc
+                port:
+                  number: {{ .Values.service.port }}
+  {{- if .Values.ingress.tls.enabled }}
+  tls:
+    - hosts:
+        - {{ .Values.ingress.host }}
+      secretName: {{ .Values.ingress.tls.secretName }}
+  {{- end }}
+{{- end }}
