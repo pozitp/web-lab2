@@ -11,8 +11,8 @@ service:
   port: 8080
 
 ingress:
-  enabled: false
-  className: ""
+  enabled: true
+  className: "nginx"
   host: web-lab2.local
   path: /
   tls:
