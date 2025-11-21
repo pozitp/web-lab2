@@ -41,13 +41,16 @@ spec:
             initialDelaySeconds: 30
             periodSeconds: 20
           resources:
-{{ toYaml .Values.resources | indent 10 }}
+            {{- toYaml .Values.resources | nindent 12 }}
       {{- with .Values.nodeSelector }}
-      nodeSelector: {{- toYaml . | nindent 8 }}
+      nodeSelector:
+{{ toYaml . | indent 8 }}
       {{- end }}
       {{- with .Values.tolerations }}
-      tolerations: {{- toYaml . | nindent 8 }}
+      tolerations:
+{{ toYaml . | indent 8 }}
       {{- end }}
       {{- with .Values.affinity }}
-      affinity: {{- toYaml . | nindent 8 }}
+      affinity:
+{{ toYaml . | indent 8 }}
       {{- end }}
